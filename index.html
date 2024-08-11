@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Book Club</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: black;
+        background-color: #f8f8f8;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      header {
+        background-color: rgba(0, 0, 0, 0);
+
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo img {
+        max-width: 40px;
+        height: 40px;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 20px;
+      }
+
+      nav ul li a {
+        color: black;
+        background-color: white;
+        border: 2px solid black;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: white;
+        background-color: #333;
+        border: 2px solid white;
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url("https://designcuts.b-cdn.net/wp-content/uploads/2023/03/yuUuzA48-ebook-template-landscape-1.jpg");
+        background-color: #333;
+        text-align: center;
+        padding: 0 20px;
+        padding: 0 20px;
+        animation: zoom-in 2s infinite alternate;
+      }
+      @keyframes zoom-in {
+        0% {
+          background-size: 100%;
+        }
+        100% {
+          background-size: 110%;
+        }
+      }
+
+      .hero-content {
+        max-width: 600px;
+      }
+
+      .hero-content h1 {
+        color: black;
+
+        font-size: 3.1rem;
+
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content p {
+        color: black;
+
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 40px;
+      }
+
+      .hero-content a {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: black;
+        color: white;
+
+        border-radius: 5px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .hero-content a:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .about {
+        padding: 100px 20px;
+        background-color: rgba(0, 0, 255, 0.279);
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .about-text p {
+        font-size: 1rem;
+        color: #666;
+      }
+
+      .about-image {
+        flex: 1;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .featured-books {
+        padding: 100px 20px;
+        background-color: #333;
+      }
+
+      .featured-books h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+      }
+
+      .book-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .book-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .book-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .book-card img {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .book-card-body {
+        padding: 20px;
+      }
+
+      .book-card-body h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .book-card-body p {
+        font-size: 0.9rem;
+        color: #777;
+      }
+
+      .testimonials {
+        padding: 100px 20px;
+        background-color: pink;
+      }
+
+      .testimonials h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+      }
+
+      .testimonial-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        background-color: rgb(241, 97, 121);
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .testimonial-card:hover {
+        background-color: #333;
+      }
+
+      .testimonial-card p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-card .author {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      .plans {
+        padding: 100px 20px;
+        background-color: rgba(0, 0, 255, 0.279);
+      }
+
+      .plans h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+      }
+
+      .plan-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .plan-card {
+        background-color: #333;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s;
+        text-align: center;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .plan-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: blue;
+      }
+
+      .plan-card p {
+        font-size: 1rem;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .plan-card .price {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 20px;
+      }
+
+      .plan-card a {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .plan-card a:hover {
+        background-color: black;
+      }
+
+      .contact {
+        padding: 100px 20px;
+        background-color: rgba(255, 0, 0, 0.504);
+      }
+
+      .contact h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+      }
+
+      .contact-container {
+        max-width: 700px;
+        margin: 0 auto;
+        background-color: #333;
+        padding: 40px;
+        border-radius: 10px;
+        border: 2px solid white;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 20px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: 2px solid white;
+        font-size: 1rem;
+        color: black;
+      }
+
+      .contact-form textarea {
+        height: 100px;
+        resize: none;
+      }
+
+      .contact-form button {
+        padding: 13px 13px;
+        background-color: rgb(242, 59, 90);
+        color: #fff;
+
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .contact-form button:hover {
+        border: 2px solid white;
+        background-color: #333;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 2px 2px;
+        text-align: center;
+      }
+
+      footer a {
+        color: #fff;
+        transition: color 0.3s;
+      }
+
+      footer a:hover {
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <a href="#"
+              ><img
+                src="https://www.freeiconspng.com/uploads/book-icon-black-good-galleries--24.jpg "
+                alt="Book Club Logo"
+            /></a>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#featured">Books</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#plans">Plans</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Join Our <b style="color: #ddd">Virtual Book</b> Club</h1>
+        <p>
+          Discover new books, connect with fellow readers, and enjoy exclusive
+          content.
+        </p>
+        <a href="#plans">Get Started</a>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>About the Book Club</h2>
+            <p>
+              Our Virtual Book Club is a vibrant community for book enthusiasts.
+              Whether you're into fiction, non-fiction, or anything in between,
+              you'll find something you love. Join us for monthly discussions,
+              author interviews, and more!
+            </p>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://i.etsystatic.com/43217583/r/il/f222b5/5649996397/il_680x540.5649996397_jxs2.jpg"
+              alt="Books"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-books" id="featured">
+      <div class="container">
+        <h2>Featured Books</h2>
+        <div class="book-cards">
+          <div class="book-card">
+            <img
+              src="https://th.bing.com/th/id/OIP.uVHAQ48VZZBZcBely2jyUAAAAA?rs=1&pid=ImgDetMain"
+              alt="Book 1"
+            />
+            <div class="book-card-body">
+              <h3>The Great Novel</h3>
+              <p>An intriguing story of love, adventure, and mystery.</p>
+            </div>
+          </div>
+          <div class="book-card" alt="Book 2">
+            <img
+              src="https://i.pinimg.com/originals/d8/09/7b/d8097b80897abfda907d1d8ff49316ee.jpg"
+              alt="book2"
+            />
+            <div class="book-card-body">
+              <h3>Mystery of the Night</h3>
+              <p>A thrilling tale that keeps you on the edge of your seat.</p>
+            </div>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://media.s-bol.com/grozE181LEj/550x825.jpg"
+              alt="Book 3"
+            />
+            <div class="book-card-body">
+              <h3>Journey to the Unknown</h3>
+              <p>A journey filled with unexpected twists and discoveries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <h2>Testimonials</h2>
+        <div class="testimonial-cards">
+          <div class="testimonial-card">
+            <p>
+              "Joining this book club has rekindled my love for reading. The
+              discussions are insightful, and the community is welcoming!"
+            </p>
+            <div class="author">- Emily R.</div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "I love the variety of books we read. The monthly selections
+              always introduce me to something new and exciting."
+            </p>
+            <div class="author">- James K.</div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "The author interviews are a highlight for me. It's fascinating to
+              hear their insights and inspirations."
+            </p>
+            <div class="author">- Sarah T.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="plans" id="plans">
+      <div class="container">
+        <h2>Subscription Plans</h2>
+        <div class="plan-cards">
+          <div class="plan-card">
+            <h3>Basic Plan</h3>
+            <p>Access to monthly book selections and discussions.</p>
+            <div class="price">$9.99/month</div>
+            <a href="#">Subscribe Now</a>
+          </div>
+          <div class="plan-card">
+            <h3>Premium Plan</h3>
+            <p>Includes all basic features plus exclusive author interviews.</p>
+            <div class="price">$19.99/month</div>
+            <a href="#">Subscribe Now</a>
+          </div>
+          <div class="plan-card">
+            <h3>Ultimate Plan</h3>
+            <p>All features included, plus early access to special events.</p>
+            <div class="price">$29.99/month</div>
+            <a href="#">Subscribe Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+          <form class="contact-form">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Virtual Book Club. All rights reserved.</p>
+      <p>
+        <a href="#about">About</a> | <a href="#featured">Books</a> |
+        <a href="#testimonials">Testimonials</a> | <a href="#plans">Plans</a> |
+        <a href="#contact">Contact</a>
+      </p>
+    </footer>
+
+    <script>
+      document.querySelectorAll("nav ul li a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
