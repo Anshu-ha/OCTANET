@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('https://i.pinimg.com/originals/3c/d9/c4/3cd9c482a5ccf2ac1edb11bf30435457.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .animated-background {
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://i.pinimg.com/originals/3c/d9/c4/3cd9c482a5ccf2ac1edb11bf30435457.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: moveBackground 20s linear infinite;
+        }
+        @keyframes moveBackground {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+
+
+
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 10vh;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 35px;
+            width: 30px;
+            margin-right: 10px;
+        }
+        .logo p {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            color: red;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            }
+            to {
+                text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            }
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 14px;
+        }
+        nav ul li {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        nav ul li:hover {
+            color: #333;
+        }
+        .main {
+            height: 90vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: auto;
+            filter: drop-shadow(20px 20px 40px rgba(0, 0, 0, 0.5));
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content .container {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .todo {
+            display: flex;
+            padding: 14px;
+            width: 100%;
+            align-items: center;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+        }
+        .Todos-list {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            flex-grow: 1;
+            border-bottom: 2px solid black;
+           
+        }
+        
+        .todos_checkbox {
+            cursor: pointer;
+        }
+        .todo:has(.todos_checkbox:checked) {
+            text-decoration: line-through 1.5px;
+            background-color: aqua;
+            color: black;
+            order: 1;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blinkCursor {
+            from { border-right-color: rgba(0,0,0,0.75); }
+            to { border-right-color: transparent; }
+        }
+        .neon-cursor {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(156, 26, 47); 
+       border-radius: 250%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1000; 
+        box-shadow: 0 0 10px rgb(221, 61, 88), 0 0 20px rgb(216, 72, 96), 0 0 30px rgb(226, 68, 94), 0 0 40px rgb(226, 29, 62);
+        animation: neonGlow 1.5s infinite alternate;
+    }
+    
+    @keyframes neonGlow {
+        0% {
+            box-shadow: 0 0 5px rgb(192, 47, 71), 0 0 10px rgb(236, 49, 80), 0 0 15px rgb(140, 29, 48), 0 0 20px rgb(217, 47, 75);
+        }
+        100% {
+            box-shadow: 0 0 20px rgb(155, 20, 43), 0 0 30px rgb(166, 15, 40), 0 0 40px rgb(158, 24, 46), 0 0 50px rgb(181, 46, 68);
+        }
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+<header>
+   
+    <nav class="container">
+        
+        <div class="logo">
+            <img src="https://avatars.githubusercontent.com/u/67080574?v=4?s=400" alt="">
+          <p>Todos-list</p>
+        </div>
+        <ul>
+            <a href=""><li style="background-color:#333;color:pink; border: 2px solid white;">Home</li></a>
+            <a href=""><li style="background-color:#333;color:pink; border: 2px solid white;">About</li></a>
+            <a href=""><li style="background-color:#333;color: pink; border: 2px solid white;">Sign in</li></a>
+        </ul>
+    </nav>
+</header>
+<div class="neon-cursor"></div>
+<div class="main">
+    <img src="https://wallpapercave.com/wp/wp8352345.jpg" alt="">
+    <div class="content">
+        <div class="container">
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+            <div class="todo">
+                <input class="Todos-list" type="text" placeholder="(empty)">
+                <input class="todos_checkbox" type="checkbox">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script >
+    const neonCursor = document.querySelector('.neon-cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            neonCursor.style.left = `${e.clientX}px`;
+            neonCursor.style.top = `${e.clientY}px`;
+        });
+        
+        
+        </script>
+</body>
+</html>
